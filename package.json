@@ -17,6 +17,7 @@
     "passport-steam": "^0.1.6",
     "express-session": "^1.12.1",
     "passport": "^0.3.2",
-    "mongoose": "^4.2.9"
+    "mongoose": "^4.2.9",
+    "steam-web": "^0.2.5"
   }
 }
