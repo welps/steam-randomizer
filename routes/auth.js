@@ -12,7 +12,7 @@ router.get('/steam',
 router.get('/steam/return',
     passport.authenticate('steam', { failureRedirect: '/' }),
     function(req, res) {
-        SteamController.convertToUser(req, res);
+        SteamController.bringInUserData(req, res);
     });
 
 module.exports = router;
