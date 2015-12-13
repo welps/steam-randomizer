@@ -15,11 +15,9 @@ UsersController.addUser = function(req, res){
 };
 
 UsersController.getUser = function(req, res){
-
-};
-
-UsersController.deleteUser = function(req, res){
-
+    UserModel.findOne({ steamID: req.params.id}, function(err, userData){
+        res.send(userData);
+    });
 };
 
 UsersController.updateUser = function(req, res){
