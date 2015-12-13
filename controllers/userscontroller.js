@@ -9,9 +9,7 @@ UsersController.addUser = function(req, res){
            });
        }
        else {
-           UserModel.findOneAndUpdate({ steamID: req.body.steamID}, req.body, function(err){
-               if (err) console.log(err);
-           });
+           UsersController.updateUser(req, res);
        }
    });
 };
@@ -22,6 +20,18 @@ UsersController.getUser = function(req, res){
 
 UsersController.deleteUser = function(req, res){
 
+};
+
+UsersController.updateUser = function(req, res){
+    UserModel.findOneAndUpdate({ steamID: req.body.steamID}, req.body, function(err){
+        if (err) console.log(err);
+    });
+};
+
+UsersController.addGames = function(req, res){
+    UserModel.findOneAndUpdate({ steamID: req.body.steamID}, { games: req.body.games} , function(err){
+       if (err) console.log(err);
+    });
 };
 
 module.exports = UsersController;
