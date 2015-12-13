@@ -6,7 +6,7 @@ var steam = require('steam-web');
 var steamService = new steam({apiKey: ENV.API_KEY, format: 'json'});
 
 SteamController.bringInUserData = function(req, res){
-    if (req.body) {
+    if (req.user) {
         req.body = {steamID: req.user.id, displayName: req.user.displayName, avatarURL: req.user.photos[2].value};
         UsersController.addUser(req, res);
         SteamController.getUsersGames(req, res);
