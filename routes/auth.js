@@ -1,18 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var passport = require('passport');
+var AuthController = require('../controllers/authcontroller');
 var SteamController = require('../controllers/steamcontroller');
 
-router.get('/steam',
-    passport.authenticate('steam', { failureRedirect: '/' }),
-    function(req, res) {
-        res.redirect('/');
-    });
-
-router.get('/steam/return',
-    passport.authenticate('steam', { failureRedirect: '/' }),
-    function(req, res) {
-        SteamController.bringInUserData(req, res);
-    });
+router.get('/steam', AuthController.authenticateUser);
+router.get('/steam/return', AuthController.authenticateUser, SteamController.bringInUserData);
 
 module.exports = router;
