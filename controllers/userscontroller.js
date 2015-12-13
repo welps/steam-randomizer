@@ -32,4 +32,13 @@ UsersController.addGames = function(req, res){
     });
 };
 
+UsersController.getRandomGame = function(req, res){
+    UserModel.findOne({ steamID: req.params.id}, function(err, userData){
+        var numGames = userData.games.length;
+        var randomNumber = Math.floor(Math.random() * numGames);
+
+        res.send(userData.games[randomNumber]);
+    });
+};
+
 module.exports = UsersController;
