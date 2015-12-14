@@ -1,0 +1,87 @@
+{
+  "name": "foundation-sites",
+  "version": "6.0.5",
+  "main": "dist/foundation.js",
+  "description": "The most advanced responsive front-end framework in the world.",
+  "author": {
+    "name": "ZURB",
+    "email": "foundation@zurb.com",
+    "url": "http://foundation.zurb.com"
+  },
+  "homepage": "http://foundation.zurb.com/sites",
+  "scripts": {
+    "start": "gulp",
+    "test": "gulp test",
+    "testbed": "cd testing && gulp",
+    "deploy": "gulp deploy:docs"
+  },
+  "dependencies": {
+    "jquery": "^2.1.0",
+    "what-input": "^1.1.2"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "bootcamp": "^1.1.7",
+    "browser-sync": "^2.8.2",
+    "gitty": "^3.3.0",
+    "gulp": "^3.8.10",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-cache-bust": "^1.0.2",
+    "gulp-cached": "^1.0.4",
+    "gulp-concat": "^2.4.3",
+    "gulp-filter": "^2.0.2",
+    "gulp-jshint": "^1.9.2",
+    "gulp-load-plugins": "^0.8.0",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-plumber": "^1.0.1",
+    "gulp-prompt": "^0.1.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-rsync": "0.0.5",
+    "gulp-ruby-sass": "1.0.0-alpha.3",
+    "gulp-sass": "^2.1.0",
+    "gulp-scss-lint": "^0.2.2",
+    "gulp-uglify": "^1.1.0",
+    "handlebars": "^3.0.1",
+    "highlight.js": "^8.5.0",
+    "inquirer": "^0.11.0",
+    "marked": "^0.3.3",
+    "mocha": "^2.3.3",
+    "motion-ui": "^1.1.0",
+    "multiline": "^1.0.2",
+    "octophant": "^1.0.0",
+    "open": "0.0.5",
+    "opener": "^1.4.1",
+    "panini": "^1.0.0",
+    "parker": "0.0.9",
+    "pretty-print": "^1.0.0",
+    "prettyjson": "^1.1.3",
+    "require-dir": "^0.3.0",
+    "rimraf": "^2.3.2",
+    "run-sequence": "^1.1.4",
+    "string-template": "^0.2.1",
+    "supercollider": "^1.1.0",
+    "typeahead.js": "^0.11.1",
+    "zeroclipboard": "^2.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zurb/foundation-sites"
+  },
+  "bugs": {
+    "url": "https://github.com/zurb/foundation-sites/issues",
+    "email": "foundation@zurb.com"
+  },
+  "keywords": [
+    "handlebars-helper-rel",
+    "handlebars-helper-slugify"
+  ],
+  "readme": "# [Foundation for Sites](http://foundation.zurb.com) (v6.0)\n\n[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/zurb/foundation-sites?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)\n\nFoundation is the most advanced responsive front-end framework in the world. Quickly go from prototype to production, building sites or apps that work on any kind of device with Foundation. Includes layout constructs, like a fully customizable, responsive grid, commonly used JavaScript plugins, and full A11Y support.\n\n## Requirements\n\nRequires NodeJS to be installed on your machine. Works with 0.10, 0.12, and 4.1! **Note that parts of our build process will break with NPM 3, due to the changes in how packages are installed.**\n\nThe Sass is compiled using libsass, which requires the GCC to be installed on your machine. Windows users can install it through [MinGW](http://www.mingw.org/), and Mac users can install it through the [Xcode Command-line Tools](http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x/).\n\n## Setup\n\nTo get going with Foundation you can:\n\n\n  * [Install Yeti Launch](http://foundation.zurb.com/develop/yeti-launch.html): Seriously though, check it out!\n  * [Install the CLI](https://www.npmjs.com/package/foundation-cli): `npm install -g foundation-cli`\n  * [Download the latest release](http://foundation.zurb.com/sites/download.html)\n  * [Install with Bower](http://bower.io): `bower install foundation-sites`\n  * [Install with npm](http://npmjs.com): `npm install foundation-sites`\n  * [Install with Atmosphere for Meteor](https://atmospherejs.com): `meteor add zurb:foundation-sites`\n  * [Install with Composer](https://getcomposer.org/): `php composer.phar require zurb/foundation-sites`\n\n## Documentation\n\nFoundation uses [Gulp](http://gulpjs.com/) and [SuperCollider](https://www.npmjs.com/package/supercollider) to generate its [documentation pages](http://foundation.zurb.com/sites/docs). Documentation can also be run from your local computer:\n\n### View documentation locally\n\nYou'll want to clone the Foundation repo first and install all the dependencies. You can do this using the following commands:\n\n```\ngit clone git@github.com:zurb/foundation-sites.git\ncd foundation-sites\nnpm install\n```\n\nThen just run `npm start` and the documentation will be compiled. It will also launch an instance of [BrowserSync](http://www.browsersync.io/) and open a tab in your default browser.\nThe file structure:\n\n```\nfoundation/\n├── dist/\n│   └── ...\n├── docs/\n│   └── ...\n```\n\nCopyright (c) 2015 ZURB, inc.\n",
+  "readmeFilename": "README.md",
+  "_id": "foundation-sites@6.0.5",
+  "dist": {
+    "shasum": "f1efc22a9fe63f459d5e2d7394bac9914486dbb1"
+  },
+  "_from": "foundation-sites@",
+  "_resolved": "https://registry.npmjs.org/foundation-sites/-/foundation-sites-6.0.5.tgz"
+}
