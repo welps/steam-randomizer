@@ -1,9 +1,12 @@
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    block title
+    link(rel='stylesheet', href='/stylesheets/foundation-sites.min.css')
+    link(rel='stylesheet', href='/stylesheets/theme.min.css')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lobster|Lato')
   body
     block content
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
+    script(src='foundation/js/foundation.core.js')
     script(src='js/global.js')

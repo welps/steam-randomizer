@@ -1,6 +1,19 @@
 extends layout
 
-block content
-  h1= title
-  p Welcome
+block title 
+  title Steam Randomizer
 
+block content
+  #main.row
+    .small-12.text-center
+      h1 Steam Randomizer
+      if !user 
+        p Paralyzed by choice? We'll pick a game for you to play.
+        p
+          a(href='auth/steam')
+            img(src='images/steamlogin.png' alt='Sign in through Steam')
+      else
+        p Hi <strong>#{user}</strong>, you should play:
+        #game.small-push-3.small-6.text-center
+          p
+        input#steam-id(value='#{steamId}', type='hidden')
