@@ -15,11 +15,21 @@
                 dataType: 'json',
                 url: 'users/randomgame/' + $steamId,
                 success: function (data){
-                    var gameImage = 'http://media.steampowered.com/steamcommunity/public/images/apps/' + data.appid + '/' + data.img_logo_url + '.jpg';
-                    $('#game p').html('<img src="' + gameImage + '" alt="' + data.name + '"/>');
+                    var gameId = data.appid;
+                    var gameName = data.name;
+                    var gameImageUrl = data.img_logo_url;
+
+                    var gameImage = 'http://media.steampowered.com/steamcommunity/public/images/apps/' + gameId + '/' + gameImageUrl + '.jpg';
+                    var gameImageHtml = '<img src="' + gameImage + '" alt="' + gameName + '"/>';
+                    var gameLink = '<a href="steam://run/' + gameId + '"></a>';
+
+                    $('#game__image').append(gameLink);
+                    $('#game__image > a').append(gameImageHtml);
+                    $('#game__name').append(gameLink);
+                    $('#game__name > a').append(gameName);
                 },
                 error: function (error){
-                    $('#game p').text('Please try again.');
+                    $('#game__image').text('Please try again.');
                 }
             });
         }

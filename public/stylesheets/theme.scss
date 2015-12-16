@@ -24,12 +24,18 @@ p {
 }
 
 #game {
-    p {
+    #game__image {
         height: 138px;
+        
+        img {
+            border-radius: 1rem;
+            width: 75%;
+        }
     }
-    img {
-        border-radius: 1rem;
-        width: 75%;
+
+    #game__name {
+        font-size: 2rem;
+        font-weight: bold;
     }
 }
 
