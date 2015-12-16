@@ -20,12 +20,10 @@ p {
 }
 
 #main {
-    margin-top: 8rem;
+    padding-top: 8rem;
 }
 
 #game {
-    margin-top: 2rem;
-
     p {
         height: 138px;
     }
@@ -33,4 +31,8 @@ p {
         border-radius: 1rem;
         width: 75%;
     }
+}
+
+.double-margin {
+    margin-top: 2rem;
 }

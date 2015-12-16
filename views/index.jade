@@ -9,12 +9,12 @@ block content
       h1 Steam Randomizer
       if !user 
         p Paralyzed by choice? We'll pick a game for you to play.
-        p
+        p.double-margin
           a(href='auth/steam')
             img(src='images/steamlogin.png' alt='Sign in through Steam')
       else
         p Hi <strong>#{user}</strong>. We think you should play:
-        #game.small-push-3.small-6.text-center
+        #game.double-margin.small-push-3.small-6.text-center
           p
         input#steam-id(value='#{steamId}', type='hidden')
         p Hate our choice? #[a#getGame Try again.]
