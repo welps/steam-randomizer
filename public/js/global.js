@@ -23,9 +23,9 @@
                     var gameImageHtml = '<img src="' + gameImage + '" alt="' + gameName + '"/>';
                     var gameLink = '<a href="steam://run/' + gameId + '"></a>';
 
-                    $('#game__image').append(gameLink);
+                    $('#game__image').html(gameLink);
                     $('#game__image > a').append(gameImageHtml);
-                    $('#game__name').append(gameLink);
+                    $('#game__name').html(gameLink);
                     $('#game__name > a').append(gameName);
                 },
                 error: function (error){
