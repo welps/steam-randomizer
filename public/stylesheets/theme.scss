@@ -1,0 +1,32 @@
+@function headings($from:1, $to:6) {
+    @if $from == $to {
+        @return 'h#{$from}';
+    } @else {
+        @return 'h#{$from},' + headings($from+1, $to);
+    }
+}
+
+#{headings(1,6)} {
+	font-family: 'Lobster', sans-serif;
+}
+
+h1 {
+	font-size: 4.5rem;
+}
+
+p {
+	font-family: 'Lato', sans-serif;
+	font-size: 1.1875rem;
+}
+
+#main {
+    margin-top: 8rem;
+}
+
+#game {
+    margin-top: 2rem;
+
+    img {
+        width: 75%;
+    }
+}
