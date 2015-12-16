@@ -1,6 +1,9 @@
 (function(){
     $(document).ready(function(){
         grabGame();
+        $('#getGame').click(function(){
+            grabGame();
+        });
     });
 
     function grabGame(){

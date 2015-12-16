@@ -13,7 +13,8 @@ block content
           a(href='auth/steam')
             img(src='images/steamlogin.png' alt='Sign in through Steam')
       else
-        p Hi <strong>#{user}</strong>, you should play:
+        p Hi <strong>#{user}</strong>. We think you should play:
         #game.small-push-3.small-6.text-center
           p
         input#steam-id(value='#{steamId}', type='hidden')
+        p Hate our choice? #[a#getGame Try again.]

@@ -26,7 +26,11 @@ p {
 #game {
     margin-top: 2rem;
 
+    p {
+        height: 138px;
+    }
     img {
+        border-radius: 1rem;
         width: 75%;
     }
 }
