@@ -26,8 +26,9 @@ userSchema.statics.updateUser = function(steamId, userData, cb){
 }
 
 userSchema.statics.addGames = function(steamId, gamesData, cb){
-    this.findOneAndUpdate({ _id: steamId}, { games: gamesData} , function(err){
+    this.findOneAndUpdate({ _id: steamId}, { games: gamesData} , {new: true}, function(err, userData){
         if (err) return cb(err);
+        return cb(null, userData);
     });
 }
 
