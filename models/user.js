@@ -19,8 +19,9 @@ userSchema.statics.getUser = function(steamId, cb){
 }
 
 userSchema.statics.updateUser = function(steamId, userData, cb){
-    this.findOneAndUpdate({ _id: steamId}, userData, {upsert: true}, function(err){
+    this.findOneAndUpdate({ _id: steamId}, userData, {new: true, upsert: true}, function(err, userData){
         if (err) return cb(err);
+        return cb(null, userData);
     });
 }
 
