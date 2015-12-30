@@ -1,35 +1,55 @@
 var chai = require('chai');
 var expect = chai.expect;
 var sinon = require('sinon');
+var rewire = require('rewire');
 
-var AuthController = require('../../controllers/authcontroller');
+var AuthController = rewire('../../controllers/authcontroller');
 var req, res, next;
 
 describe('Auth Controller', function(){
     describe('authenticateUser()', function() {
-        it('should pass req, res, next to passport', function(){
+        beforeEach(function(){
             req = {};
             res = {};
+            next = function(err) {if (err) return err};
+        });
 
+        it('should pass req, res, next to passport', function(){
             req.mock = 'Fake Request Property';
             res.mock = 'Fake Response Property';
-            next = function(err) {if (err) return err};
 
-            var spy = sinon.spy(AuthController, 'authenticateUser');
-
-            AuthController.authenticateUser(req, res, next);
-
-            var mockRequest = spy.getCall(0).args[0].mock;
-            expect(mockRequest).to.equal('Fake Request Property');
-
-            var mockResponse = spy.getCall(0).args[1].mock;
-            expect(mockResponse).to.equal('Fake Response Property');
-
-            var mockNext = spy.getCall(0).args[2];
-            expect(mockNext).to.be.a('function');
-
+            AuthController.__with__({
+               passport: {
+                   authenticate: function(strategy, options){
+                       return function(req, res, next){
+                           expect(req.mock).to.equal('Fake Request Property');
+                           expect(res.mock).to.equal('Fake Response Property');
+                           expect(next).to.be.a('function');
+                       }
+                   }
+               }
+            })(function(){
+                AuthController.authenticateUser(req, res, next);
+            });
         });
-        it('should throw a passport error', function() {
+
+        it('should pass steam and failure redirect options to the passport', function(){
+            AuthController.__with__({
+                passport: {
+                    authenticate: function(strategy, options){
+                        expect(strategy).to.equal('steam');
+                        expect(options).to.be.an('object');
+                        expect(options.failureRedirect).to.equal('/');
+
+                        return function(req, res, next){};
+                    }
+                }
+            })(function(){
+                AuthController.authenticateUser(req, res, next);
+            });
+        });
+
+        it('should throw a passport error because no strategy is loaded', function() {
             req = res = {};
             var mockNext = sinon.spy();
 
@@ -40,5 +60,6 @@ describe('Auth Controller', function(){
             expect(passportError).to.be.instanceof(Error);
             expect(passportError.toString()).to.equal('Error: Unknown authentication strategy "steam"');
         });
+
     });
 });
