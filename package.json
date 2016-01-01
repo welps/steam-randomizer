@@ -19,5 +19,12 @@
     "passport": "^0.3.2",
     "mongoose": "^4.2.9",
     "steam-web": "^0.2.5"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "async": "^1.5.0",
+    "sinon": "^1.17.2",
+    "mockery": "^1.4.0",
+    "rewire": "^2.5.1"
   }
 }
