@@ -13,7 +13,7 @@
             $.ajax({
                 type: 'GET',
                 dataType: 'json',
-                url: 'users/randomgame/' + $steamId,
+                url: 'users/' + $steamId + '/randomgame/',
                 success: function (data){
                     var gameId = data.appid;
                     var gameName = data.name;
