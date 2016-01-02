@@ -32,15 +32,31 @@ userSchema.statics.addGames = function(steamId, gamesData, cb){
     });
 }
 
-userSchema.statics.getRandomGame = function(steamId, cb){
+userSchema.statics.getRandomGame = function(steamId, numRequested, cb){
     this.findOne({ _id: steamId}, function(err, userData){
         if (err) return cb(err);
 
         if (userData) {
-                var numGames = userData.games.length;
-                var randomNumber = Math.floor(Math.random() * numGames);
+            var numGames = userData.games.length;
+            numRequested = numRequested || 1; // return 1 game if no number set
 
-                return cb(null, userData.games[randomNumber]);
+            // randomly ordered unique set of values up to numGames to prevent duplicate game return
+            var randomValues = [];
+            for (var i = 0; i < numGames; i++){
+                randomValues[i] = i;
+            }
+            randomValues.sort(function(){
+               return Math.random() - 0.5;
+            });
+
+            var game;
+            var jsonReturn = {games: []};
+            for (var i = 0; i < numRequested; i++) {
+                game = userData.games[randomValues.pop()] || {}; // return empty object if requests > games
+                jsonReturn.games.push(game);
+            }
+
+            return cb(null, JSON.stringify(jsonReturn));
         }
 
         return cb(null, '');

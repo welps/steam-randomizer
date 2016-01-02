@@ -10,7 +10,7 @@ describe('Users Controller', function(){
     beforeEach(function(){
         req = {};
         req.body = {steamID: 12345, displayName: 'Mangos'};
-        req.params = {id: 12345};
+        req.params = {id: 12345, numRequested: 5};
         res = {};
         res.send = sinon.spy();
         next = function (err) {if (err) return err;};
@@ -102,11 +102,12 @@ describe('Users Controller', function(){
     });
 
     describe('getRandomGame()', function(){
-        it('should pass the id from request and a callback to model', function(){
+        it('should pass the id and number of games to retrieve from request and a callback to model', function(){
             UsersController.__with__({
                 UserModel: {
-                    getRandomGame: function(steamId, cb){
+                    getRandomGame: function(steamId, numRequested, cb){
                         expect(steamId).to.equal(req.params.id);
+                        expect(numRequested).to.equal(req.params.numRequested);
                         expect(cb).to.be.a('function');
                     }
                 }
@@ -118,15 +119,17 @@ describe('Users Controller', function(){
         it('should pass a callback that calls res.send with returned data from model', function(){
             UsersController.__with__({
                 UserModel: {
-                    getRandomGame: function(steamId, cb){
+                    getRandomGame: function(steamId, numRequested, cb){
                         var gameData = {
-                            game1: {name: 'Fake Game 1'}
+                            games: {
+                                game1: {name: 'Fake Game 1'}
+                            }
                         }
 
                         cb(null, gameData);
 
                         var passedGameData = res.send.getCall(0).args[0];
-                        expect(passedGameData.game1.name).to.equal(gameData.game1.name);
+                        expect(passedGameData.games.game1.name).to.equal(gameData.games.game1.name);
                     }
                 }
             })(function(){

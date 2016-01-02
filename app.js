@@ -49,7 +49,7 @@ app.use(function(req, res, next){
 });
 
 app.use('/', routes.Home);
-app.use('/users', routes.Users);
+app.use('/user', routes.Users);
 app.use('/auth', routes.Auth);
 
 // catch 404 and forward to error handler

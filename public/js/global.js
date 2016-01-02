@@ -13,11 +13,11 @@
             $.ajax({
                 type: 'GET',
                 dataType: 'json',
-                url: 'users/' + $steamId + '/randomgame/',
+                url: 'user/' + $steamId + '/randomgame/',
                 success: function (data){
-                    var gameId = data.appid;
-                    var gameName = data.name;
-                    var gameImageUrl = data.img_logo_url;
+                    var gameId = data.games[0].appid;
+                    var gameName = data.games[0].name;
+                    var gameImageUrl = data.games[0].img_logo_url;
 
                     var gameImage = 'http://media.steampowered.com/steamcommunity/public/images/apps/' + gameId + '/' + gameImageUrl + '.jpg';
                     var gameImageHtml = '<img src="' + gameImage + '" alt="' + gameName + '"/>';

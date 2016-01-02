@@ -27,7 +27,7 @@ UsersController.addGames = function(req, res, next){
 };
 
 UsersController.getRandomGame = function(req, res, next){
-    UserModel.getRandomGame(req.params.id, function(err, randomGame){
+    UserModel.getRandomGame(req.params.id, req.params.numRequested, function(err, randomGame){
         if (err) return next(err);
         res.send(randomGame);
     });

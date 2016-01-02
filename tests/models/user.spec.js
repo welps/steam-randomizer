@@ -163,13 +163,14 @@ describe('Users model', function(){
             addTestUser(defaultTestUser.steamID, defaultTestUser.displayName, defaultTestUser.avatarURL, function(err){if (err) throw err;});
             User.addGames(defaultTestUser.steamID, testGames, function(err){if (err) throw err;});
 
-            User.getRandomGame(defaultTestUser.steamID, function(err, game){
+            User.getRandomGame(defaultTestUser.steamID, 1, function(err, returnedGames){
                 if (err) throw err;
 
-                expect(game).to.have.property('appid');
-                expect(game).to.have.property('name');
-                expect(game).to.have.property('playtime_2weeks');
-                expect(game).to.have.property('img_logo_url');
+                returnedGames = JSON.parse(returnedGames);
+                expect(returnedGames.games[0]).to.have.property('appid');
+                expect(returnedGames.games[0]).to.have.property('name');
+                expect(returnedGames.games[0]).to.have.property('playtime_2weeks');
+                expect(returnedGames.games[0]).to.have.property('img_logo_url');
 
                 return done();
             });
@@ -186,10 +187,11 @@ describe('Users model', function(){
             async.whilst(
                 function() {return gameToTestAgainst.name == randomGame.name;},
                 function(cb) {
-                    User.getRandomGame(defaultTestUser.steamID, function(err, returnedGame){
+                    User.getRandomGame(defaultTestUser.steamID, 1, function(err, returnedGames){
                         if (err) throw err;
 
-                        randomGame = returnedGame;
+                        returnedGames = JSON.parse(returnedGames);
+                        randomGame = returnedGames.games[0];
 
                         cb(null);
                     });
