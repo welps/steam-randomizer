@@ -9,7 +9,6 @@ var chai = require('chai');
 var async = require('async');
 var expect = chai.expect;
 var User = require('../../models/user');
-var ENV = require('../../tests/env');
 
 /* helper methods */
 function addTestUser(steamID, displayName, avatarURL, cb){
@@ -51,7 +50,7 @@ var testGames = [
 describe('Users model', function(){
     beforeEach(function(done){
         if (mongoose.connection.readyState === 0) { 
-            mongoose.connect(ENV.DB_LOCATION, function (err) {
+            mongoose.connect(process.env.DB_TEST_HOST, function (err) {
                 if (err) throw err;
                 for (var i in mongoose.connection.collections){
                     mongoose.connection.collections[i].remove();

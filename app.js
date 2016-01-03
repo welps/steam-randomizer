@@ -35,8 +35,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-    secret: config.ENV.SESSION_SECRET,
-    name: config.ENV.SESSION_NAME,
+    secret: process.env.SESSION_SECRET,
+    name: process.env.SESSION_NAME,
     resave: true,
     saveUninitialized: true}));
 

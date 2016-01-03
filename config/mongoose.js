@@ -1,8 +1,5 @@
 var mongoose = require('mongoose');
-var ENV = require('./env');
-
-mongoose.connect(ENV.DB_LOCATION);
-
+mongoose.connect(process.env.DB_HOST);
 var db = mongoose.connection;
 
 db.on('error', function(err){

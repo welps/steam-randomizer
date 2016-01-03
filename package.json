@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha tests/*"
+    "test": "NODE_ENV=test API_KEY= DB_TEST_HOST=mongodb://localhost/steam-randomizer ./node_modules/mocha/bin/mocha tests/*"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -19,7 +19,8 @@
     "express-session": "^1.12.1",
     "passport": "^0.3.2",
     "mongoose": "^4.2.9",
-    "steam-web": "^0.2.5"
+    "steam-web": "^0.2.5",
+    "dotenv": "^1.2.0"
   },
   "devDependencies": {
     "chai": "^3.4.1",

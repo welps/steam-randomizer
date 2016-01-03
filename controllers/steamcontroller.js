@@ -1,9 +1,8 @@
 var SteamController = SteamController || {};
 var UsersController = require('./userscontroller');
 
-var ENV = require('../config/env');
 var steam = require('steam-web');
-var steamService = new steam({apiKey: ENV.API_KEY, format: 'json'});
+var steamService = new steam({apiKey: process.env.API_KEY, format: 'json'});
 
 SteamController.bringInUserData = function(req, res, next){
     if (req.user) {

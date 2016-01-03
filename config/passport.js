@@ -1,6 +1,5 @@
 var passport = require('passport');
 var SteamStrategy = require('passport-steam').Strategy;
-var ENV = require('./env');
 
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -11,9 +10,9 @@ passport.deserializeUser(function(obj, done) {
 });
 
 passport.use(new SteamStrategy({
-        returnURL: ENV.RETURN_URL,
-        realm: ENV.BASE_URL,
-        apiKey: ENV.API_KEY
+        returnURL: process.env.RETURN_URL,
+        realm: process.env.BASE_URL,
+        apiKey: process.env.API_KEY
     },
     function(identifier, profile, done) {
         process.nextTick(function () {

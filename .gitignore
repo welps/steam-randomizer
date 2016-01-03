@@ -3,6 +3,6 @@
 public/foundation/.*
 .sass-cache/
 node_modules/
-config/env.js
+config/.env
 data/
 npm-debug.log
