@@ -9,28 +9,28 @@ userSchema.virtual('steamID').get(function(){
 
 userSchema.statics.addUser = function(steamId, userData, cb){
     this.updateUser(steamId, userData, cb);
-}
+};
 
 userSchema.statics.getUser = function(steamId, cb){
     this.findOne({ _id: steamId}, function(err, userData){
         if (err) return cb(err);
         return cb(null, userData);
     });
-}
+};
 
 userSchema.statics.updateUser = function(steamId, userData, cb){
     this.findOneAndUpdate({ _id: steamId}, userData, {new: true, upsert: true}, function(err, userData){
         if (err) return cb(err);
         return cb(null, userData);
     });
-}
+};
 
 userSchema.statics.addGames = function(steamId, gamesData, cb){
     this.findOneAndUpdate({ _id: steamId}, { games: gamesData} , {new: true}, function(err, userData){
         if (err) return cb(err);
         return cb(null, userData);
     });
-}
+};
 
 userSchema.statics.getRandomGame = function(steamId, numRequested, cb){
     this.findOne({ _id: steamId}, function(err, userData){
@@ -40,15 +40,7 @@ userSchema.statics.getRandomGame = function(steamId, numRequested, cb){
             var numGames = userData.games.length;
             numRequested = numRequested || 1; // return 1 game if no number set
 
-            // randomly ordered unique set of values up to numGames to prevent duplicate game return
-            var randomValues = [];
-            for (var i = 0; i < numGames; i++){
-                randomValues[i] = i;
-            }
-            randomValues.sort(function(){
-               return Math.random() - 0.5;
-            });
-
+            var randomValues = getUniqueRandomValues(numGames);
             var game;
             var jsonReturn = {games: []};
             for (var i = 0; i < numRequested; i++) {
@@ -61,7 +53,20 @@ userSchema.statics.getRandomGame = function(steamId, numRequested, cb){
 
         return cb(null, '');
     });
-}
+};
+
+// produce randomly ordered unique set of values so no duplicate games are returned
+var getUniqueRandomValues = function(num){
+    var randomValues = [];
+    for (var i = 0; i < num; i++){
+        randomValues[i] = i;
+    }
+    randomValues.sort(function(){
+        return Math.random() - 0.5;
+    });
+
+    return randomValues;
+};
 
 var User = mongoose.model('User', userSchema);
 
