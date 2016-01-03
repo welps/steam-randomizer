@@ -25,6 +25,6 @@ SteamController.getUsersGames = function (req, res, next){
             res.redirect('/');
         }
     });
-}
+};
 
 module.exports = SteamController;
