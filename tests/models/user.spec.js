@@ -203,5 +203,38 @@ describe('Users model', function(){
                 }
             );
         });
+
+        it('should return the requested amount of games', function(done){
+            addTestUser(defaultTestUser.steamID, defaultTestUser.displayName, defaultTestUser.avatarURL, function(err){if (err) throw err;});
+            User.addGames(defaultTestUser.steamID, testGames, function(err){if (err) throw err;});
+
+            User.getRandomGame(defaultTestUser.steamID, 3, function(err, returnedGames){
+                if (err) throw err;
+
+                returnedGames = JSON.parse(returnedGames);
+                expect(returnedGames.games.length).to.equal(3);
+
+                return done();
+            });
+        });
+
+        it('should return empty objects if requested amount of games exceeds the number of games the user has', function(done){
+            addTestUser(defaultTestUser.steamID, defaultTestUser.displayName, defaultTestUser.avatarURL, function(err){if (err) throw err;});
+            User.addGames(defaultTestUser.steamID, testGames, function(err){if (err) throw err;});
+
+            var numberOfGamesToRequest = testGames.length + 3;
+
+            User.getRandomGame(defaultTestUser.steamID, numberOfGamesToRequest, function(err, returnedGames){
+                if (err) throw err;
+
+                returnedGames = JSON.parse(returnedGames);
+                expect(returnedGames.games.length).to.equal(numberOfGamesToRequest);
+                for (var i = 3; i < 6; i++){
+                    expect(Object.keys(returnedGames.games[i]).length).to.equal(0);
+                }
+
+                return done();
+            });
+        });
     });
 });
