@@ -56,7 +56,7 @@ describe('Users model', function(){
                     mongoose.connection.collections[i].remove();
                 }
 
-                return done();
+                done();
             });
         }
         else {
@@ -64,14 +64,14 @@ describe('Users model', function(){
                 mongoose.connection.collections[i].remove();
             }
 
-            return done();
+            done();
         }
     });
 
     afterEach(function(done){
         if (mongoose.connection.readyState != 0) {
             mongoose.disconnect();
-            return done();
+            done();
         }
     });
 
@@ -82,7 +82,7 @@ describe('Users model', function(){
                 
                 expectDefaultUserToMatch(createdUser);
 
-                return done();
+                done();
             });
         });
 
@@ -96,7 +96,7 @@ describe('Users model', function(){
 
                 expect(count).to.equal(1);
 
-                return done();
+                done();
             });
 
         });
@@ -116,7 +116,7 @@ describe('Users model', function(){
                 expect(updatedUser.displayName).to.equal('Pete');
                 expect(updatedUser.avatarURL).to.equal('http://www.example2.com');
 
-                return done();
+                done();
             });
         });
     });
@@ -129,7 +129,7 @@ describe('Users model', function(){
 
                 expectDefaultUserToMatch(retrievedUser);
             
-                return done();
+                done();
             });
         });
     });
@@ -154,7 +154,7 @@ describe('Users model', function(){
                     expect(updatedUser.games[i].img_logo_url).to.equal(testGames[i].img_logo_url);
                 }
 
-                return done();
+                done();
             });
         });
     });
@@ -173,7 +173,7 @@ describe('Users model', function(){
                 expect(returnedGames.games[0]).to.have.property('playtime_2weeks');
                 expect(returnedGames.games[0]).to.have.property('img_logo_url');
 
-                return done();
+                done();
             });
         });
 
@@ -216,7 +216,7 @@ describe('Users model', function(){
                 returnedGames = JSON.parse(returnedGames);
                 expect(returnedGames.games.length).to.equal(3);
 
-                return done();
+                done();
             });
         });
 
@@ -235,7 +235,7 @@ describe('Users model', function(){
                     expect(Object.keys(returnedGames.games[i]).length).to.equal(0);
                 }
 
-                return done();
+                done();
             });
         });
     });
