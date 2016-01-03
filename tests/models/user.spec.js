@@ -68,11 +68,9 @@ describe('Users model', function(){
         }
     });
 
-    afterEach(function(done){
-        if (mongoose.connection.readyState != 0) {
-            mongoose.disconnect();
-            done();
-        }
+    after(function(done){
+        mongoose.disconnect();
+        done();
     });
 
     describe('addUser/updateUser()', function () {
