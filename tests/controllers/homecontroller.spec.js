@@ -41,7 +41,7 @@ describe('Home Controller', function(){
 
             expect(mockView).to.equal('index');
             expect(mockDataForView.user).to.equal('mangos');
-            expect(mockDataForView.steamId).to.equal(12345);
+            expect(mockDataForView.steamID).to.equal(12345);
         })
     })
 });

@@ -8,13 +8,13 @@
     });
 
     function getGames(){
-        var $steamId;
+        var $steamID;
 
-        if ( ($steamId = $('#steam-id').val()) ){
+        if ( ($steamID = $('#steam-id').val()) ){
             $.ajax({
                 type: 'GET',
                 dataType: 'json',
-                url: 'user/' + $steamId + '/randomgame/10',
+                url: 'user/' + $steamID + '/randomgame/20',
                 success: function (data){
                     addGamesToPage(data);
                     pickGame();

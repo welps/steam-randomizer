@@ -20,8 +20,8 @@ describe('Users Controller', function(){
         it('should pass the steamID, req.body, and a callback to model', function(){
             UsersController.__with__({
                 UserModel: {
-                    addUser: function(steamId, userData, cb){
-                        expect(steamId).to.equal(req.body.steamID);
+                    addUser: function(steamID, userData, cb){
+                        expect(steamID).to.equal(req.body.steamID);
                         expect(userData).to.equal(req.body);
                         expect(userData.displayName).to.equal(req.body.displayName);
                         expect(cb).to.be.a('function');
@@ -37,8 +37,8 @@ describe('Users Controller', function(){
         it('should pass the id from request and a callback to model', function(){
             UsersController.__with__({
                 UserModel: {
-                    getUser: function(steamId, cb){
-                        expect(steamId).to.equal(req.params.id);
+                    getUser: function(steamID, cb){
+                        expect(steamID).to.equal(req.params.id);
                         expect(cb).to.be.a('function');
                     }
                 }
@@ -50,7 +50,7 @@ describe('Users Controller', function(){
         it('should pass a callback that calls res.send with returned data from model', function(){
             UsersController.__with__({
                 UserModel: {
-                    getUser: function(steamId, cb){
+                    getUser: function(steamID, cb){
                         var userData = {
                             displayName: req.body.displayName
                         }
@@ -70,8 +70,8 @@ describe('Users Controller', function(){
         it('should pass the steamID, req.body, and a callback to model', function(){
             UsersController.__with__({
                 UserModel: {
-                    updateUser: function(steamId, userData, cb){
-                        expect(steamId).to.equal(req.body.steamID);
+                    updateUser: function(steamID, userData, cb){
+                        expect(steamID).to.equal(req.body.steamID);
                         expect(userData).to.equal(req.body);
                         expect(userData.displayName).to.equal(req.body.displayName);
                         expect(cb).to.be.a('function');
@@ -89,8 +89,8 @@ describe('Users Controller', function(){
 
            UsersController.__with__({
                 UserModel: {
-                    addGames: function(steamId, gamesData, cb){
-                        expect(steamId).to.equal(req.body.steamID);
+                    addGames: function(steamID, gamesData, cb){
+                        expect(steamID).to.equal(req.body.steamID);
                         expect(gamesData.game1.name).to.equal(req.body.games.game1.name);
                         expect(cb).to.be.a('function');
                     }
@@ -105,8 +105,8 @@ describe('Users Controller', function(){
         it('should pass the id and number of games to retrieve from request and a callback to model', function(){
             UsersController.__with__({
                 UserModel: {
-                    getRandomGame: function(steamId, numRequested, cb){
-                        expect(steamId).to.equal(req.params.id);
+                    getRandomGame: function(steamID, numRequested, cb){
+                        expect(steamID).to.equal(req.params.id);
                         expect(numRequested).to.equal(req.params.numRequested);
                         expect(cb).to.be.a('function');
                     }
@@ -119,7 +119,7 @@ describe('Users Controller', function(){
         it('should pass a callback that calls res.send with returned data from model', function(){
             UsersController.__with__({
                 UserModel: {
-                    getRandomGame: function(steamId, numRequested, cb){
+                    getRandomGame: function(steamID, numRequested, cb){
                         var gameData = {
                             games: {
                                 game1: {name: 'Fake Game 1'}
