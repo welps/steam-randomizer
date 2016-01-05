@@ -3,37 +3,33 @@ var mongoose = require('mongoose');
 var gameSchema = new mongoose.Schema({ appid: 'number', name: 'string', playtime_2weeks: 'number', img_logo_url: 'string'});
 var userSchema = new mongoose.Schema({ _id: 'number', displayName: 'string', avatarURL: 'string', games: [gameSchema] });
 
-userSchema.virtual('steamID').get(function(){
-    return this._id;
-});
-
-userSchema.statics.addUser = function(steamId, userData, cb){
-    this.updateUser(steamId, userData, cb);
+userSchema.statics.addUser = function(steamID, userData, cb){
+    this.updateUser(steamID, userData, cb);
 };
 
-userSchema.statics.getUser = function(steamId, cb){
-    this.findOne({ _id: steamId}, function(err, userData){
+userSchema.statics.getUser = function(steamID, cb){
+    this.findOne({ _id: steamID}, function(err, userData){
+        if (err) return cb(err);
+        return cb(null, JSON.stringify(userData));
+    });
+};
+
+userSchema.statics.updateUser = function(steamID, userData, cb){
+    this.findOneAndUpdate({ _id: steamID}, userData, {new: true, upsert: true}, function(err, userData){
         if (err) return cb(err);
         return cb(null, userData);
     });
 };
 
-userSchema.statics.updateUser = function(steamId, userData, cb){
-    this.findOneAndUpdate({ _id: steamId}, userData, {new: true, upsert: true}, function(err, userData){
+userSchema.statics.addGames = function(steamID, gamesData, cb){
+    this.findOneAndUpdate({ _id: steamID}, { games: gamesData} , {new: true}, function(err, userData){
         if (err) return cb(err);
         return cb(null, userData);
     });
 };
 
-userSchema.statics.addGames = function(steamId, gamesData, cb){
-    this.findOneAndUpdate({ _id: steamId}, { games: gamesData} , {new: true}, function(err, userData){
-        if (err) return cb(err);
-        return cb(null, userData);
-    });
-};
-
-userSchema.statics.getRandomGame = function(steamId, numRequested, cb){
-    this.findOne({ _id: steamId}, function(err, userData){
+userSchema.statics.getRandomGame = function(steamID, numRequested, cb){
+    this.findOne({ _id: steamID}, function(err, userData){
         if (err) return cb(err);
 
         if (userData) {

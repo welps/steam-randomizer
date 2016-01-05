@@ -24,9 +24,6 @@ function expectDefaultUserToMatch(userToTest){
     expect(userToTest._id).to.be.a('number');
     expect(userToTest._id).to.equal(defaultTestUser.steamID);
 
-    expect(userToTest.steamID).to.be.a('number');
-    expect(userToTest.steamID).to.equal(userToTest._id);
-
     expect(userToTest.displayName).to.be.a('string');
     expect(userToTest.displayName).to.equal(defaultTestUser.displayName);
 
@@ -125,6 +122,7 @@ describe('Users model', function(){
             User.getUser(defaultTestUser.steamID, function(err, retrievedUser){
                 if (err) throw err;
 
+                retrievedUser = JSON.parse(retrievedUser);
                 expectDefaultUserToMatch(retrievedUser);
             
                 done();
