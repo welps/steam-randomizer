@@ -15,9 +15,6 @@ var config = require('./config');
 var mongoose = require('mongoose');
 var db = mongoose.connection;
 
-// Loads all models
-var models = require('./models');
-
 // Loads all routes
 var routes = require('./routes');
 
