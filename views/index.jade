@@ -18,4 +18,4 @@ block content
                 p Hi <strong>#{user}</strong>. We think you should play:
                 #games.double-margin.small-push-2.small-8.text-center
                 input#steam-id(value='#{steamID}', type='hidden')
-                p #[a#getGame.button TRY AGAIN] or #[a.button(href="auth/logout") LEAVE]
+                p.options #[a.button.dark-red(href="auth/logout") LEAVE] or #[a#getGame.button.green TRY AGAIN]

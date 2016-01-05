@@ -58,8 +58,9 @@
 
     function showNextGame($selector, runThisManyTimes){
         if (runThisManyTimes == 0){
-            // show the game to play after brief delay
+            // show the game and user options to play after brief delay
             setTimeout(function(){$selector.fadeToggle(5000)}, 1000);
+            setTimeout(function(){$('.options').fadeToggle(2000)}, 4000);
             return;
         }
 
