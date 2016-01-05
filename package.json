@@ -4,7 +4,13 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "NODE_ENV=test API_KEY= DB_TEST_HOST=mongodb://localhost/steam-randomizer-test ./node_modules/mocha/bin/mocha tests/*"
+    "test": "NODE_ENV=test YOURPACKAGE_COVERAGE=1 API_KEY= DB_TEST_HOST=mongodb://localhost/steam-randomizer-test ./node_modules/mocha/bin/mocha --require blanket --reporter mocha-lcov-reporter tests/* | ./node_modules/coveralls/bin/coveralls.js"
+  },
+  "config": {
+    "blanket": {
+        "pattern": [""],
+        "data-cover-never": [ "node_modules", "tests"]
+    }
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -35,6 +41,8 @@
     "gulp-sass": "^2.1.1",
     "gulp-watch": "^4.3.5",
     "gulp-minify-css": "^1.2.3",
-    "gulp-rename": "^1.2.2"
+    "gulp-rename": "^1.2.2",
+    "mocha-lcov-reporter": "^1.0.0",
+    "blanket": "^1.2.1"
   }
 }

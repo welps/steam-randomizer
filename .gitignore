@@ -6,3 +6,4 @@ node_modules/
 config/.env
 data/
 npm-debug.log
+.coveralls.yml
