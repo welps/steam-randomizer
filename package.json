@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "NODE_ENV=test API_KEY= DB_TEST_HOST=mongodb://localhost/steam-randomizer ./node_modules/mocha/bin/mocha tests/*"
+    "test": "NODE_ENV=test API_KEY= DB_TEST_HOST=mongodb://localhost/steam-randomizer-test ./node_modules/mocha/bin/mocha tests/*"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
