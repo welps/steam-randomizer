@@ -23,8 +23,18 @@ p {
     padding-top: 8rem;
 }
 
-#game {
-    #game__image {
+#games {
+    height: 270px;
+    position: relative;
+    overflow: hidden;
+}
+
+.game {
+    padding-bottom: 2rem;
+    position: absolute;
+    width: 100%;
+
+    .game__image {
         height: 184px;
         
         img {
@@ -33,7 +43,7 @@ p {
         }
     }
 
-    #game__name {
+    .game__name {
         font-size: 1.5rem;
         font-weight: bold;
     }
