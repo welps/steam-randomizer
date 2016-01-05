@@ -7,13 +7,13 @@ var AuthController = rewire('../../controllers/authcontroller');
 var req, res, next;
 
 describe('Auth Controller', function(){
-    describe('authenticateUser()', function() {
-        beforeEach(function(){
+    beforeEach(function(){
             req = {};
             res = {};
             next = function(err) {if (err) return err};
-        });
+    });
 
+    describe('authenticateUser()', function() {
         it('should pass req, res, next to passport', function(){
             req.mock = 'Fake Request Property';
             res.mock = 'Fake Response Property';
@@ -61,5 +61,25 @@ describe('Auth Controller', function(){
             expect(passportError.toString()).to.equal('Error: Unknown authentication strategy "steam"');
         });
 
+    });
+
+    describe('logoutUser()', function(){
+        it('should call req.logout()', function(){
+            req.logout = sinon.spy();
+            res.redirect = sinon.spy();
+
+            AuthController.logoutUser(req, res, next);
+            
+            expect(req.logout.calledOnce).to.be.true;
+        });
+
+        it('should redirect to the homepage', function(){
+            req.logout = sinon.spy();
+            res.redirect = sinon.spy();
+
+            AuthController.logoutUser(req, res, next);
+            
+            expect(res.redirect.getCall(0).args[0]).to.equal('/');
+        });
     });
 });

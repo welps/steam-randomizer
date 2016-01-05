@@ -5,5 +5,6 @@ var SteamController = require('../controllers/steamcontroller');
 
 router.get('/steam', AuthController.authenticateUser);
 router.get('/steam/return', AuthController.authenticateUser, SteamController.bringInUserData);
+router.get('/logout', AuthController.logoutUser);
 
 module.exports = router;
