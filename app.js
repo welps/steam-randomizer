@@ -1,5 +1,6 @@
 var express = require('express');
 var session = require('express-session');
+var MongoStore = require('connect-mongo/es5')(session);
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -35,17 +36,18 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-    secret: process.env.SESSION_SECRET,
-    name: process.env.SESSION_NAME,
-    resave: true,
-    saveUninitialized: true}));
+        secret: process.env.SESSION_SECRET,
+        store: new MongoStore({ mongooseConnection: db }),
+        name: process.env.SESSION_NAME,
+        resave: true,
+        saveUninitialized: true}));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(function(req, res, next){
-    req.db = db;
-    next();
+        req.db = db;
+        next();
 });
 
 app.use('/', routes.Home);
@@ -54,9 +56,9 @@ app.use('/auth', routes.Auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handlers
@@ -64,23 +66,23 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
     });
-  });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
 });
 
 module.exports = app;
