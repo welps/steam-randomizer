@@ -128,6 +128,17 @@ describe('Users model', function(){
                 done();
             });
         });
+
+        it('should return an empty object if user does not exist', function(done){
+            User.getUser(999999999, function(err, retrievedUser){
+                if (err) throw err;
+
+                retrievedUser = JSON.parse(retrievedUser);
+                expect(Object.keys(retrievedUser).length).to.equal(0);
+            
+                done();
+            });
+        });
     });
 
     describe('addGames()', function(){
@@ -211,6 +222,17 @@ describe('Users model', function(){
 
                 returnedGames = JSON.parse(returnedGames);
                 expect(returnedGames.games.length).to.equal(3);
+
+                done();
+            });
+        });
+
+        it('should return an empty object if user does not exist', function(done){
+            User.getRandomGame(999999999, 10, function(err, returnedGames){
+                if (err) throw err;
+
+                returnedGames = JSON.parse(returnedGames);
+                expect(Object.keys(returnedGames).length).to.equal(0);
 
                 done();
             });

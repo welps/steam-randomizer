@@ -10,7 +10,12 @@ userSchema.statics.addUser = function(steamID, userData, cb){
 userSchema.statics.getUser = function(steamID, cb){
     this.findOne({ _id: steamID}, function(err, userData){
         if (err) return cb(err);
-        return cb(null, JSON.stringify(userData));
+
+        if (userData){
+            return cb(null, JSON.stringify(userData));
+        }
+           
+        return cb(null, JSON.stringify({}));
     });
 };
 
@@ -47,7 +52,7 @@ userSchema.statics.getRandomGame = function(steamID, numRequested, cb){
             return cb(null, JSON.stringify(jsonReturn));
         }
 
-        return cb(null, '');
+        return cb(null, JSON.stringify({}));
     });
 };
 
