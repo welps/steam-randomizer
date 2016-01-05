@@ -38,7 +38,7 @@
                 gameNameHtml = '<p class="game__name">' + gameName + '</p>';
                 gameImage = 'http://media.steampowered.com/steamcommunity/public/images/apps/' + gameId + '/' + gameImageUrl + '.jpg';
                 gameImageHtml = '<p class="game__image"><img src="' + gameImage + '" alt="' + gameName + '"/></p>';
-                gameLinkHtml = '<a href="steam://run/' + gameId + '">' + gameNameHtml + '</a>';
+                gameLinkHtml = '<a title="Click to run or install game" href="steam://run/' + gameId + '">' + gameNameHtml + '</a>';
             
                 gameDiv = '<div class="game">' + gameImageHtml + gameLinkHtml + '</div>';
                 gamesDiv += gameDiv;
