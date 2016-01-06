@@ -20,6 +20,7 @@ var routes = require('./routes');
 
 var app = express();
 
+var customPath = process.env.CUSTOM_PATH || '';
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -30,7 +31,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(customPath, express.static(path.join(__dirname, 'public')));
 
 app.use(session({
         secret: process.env.SESSION_SECRET,
@@ -47,9 +48,9 @@ app.use(function(req, res, next){
         next();
 });
 
-app.use('/', routes.Home);
-app.use('/user', routes.Users);
-app.use('/auth', routes.Auth);
+app.use(customPath + '/', routes.Home);
+app.use(customPath + '/user', routes.Users);
+app.use(customPath + '/auth', routes.Auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
