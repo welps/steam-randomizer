@@ -1,24 +1,17 @@
-var express = require('express');
-var session = require('express-session');
-var MongoStore = require('connect-mongo/es5')(session);
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-
-var passport = require('passport');
-
-// Loads and executes all configuration files
-var config = require('./config');
-
-var mongoose = require('mongoose');
-var db = mongoose.connection;
-
-// Loads all routes
-var routes = require('./routes');
-
-var app = express();
+var express = require('express'),
+    session = require('express-session'),
+    MongoStore = require('connect-mongo/es5')(session),
+    path = require('path'),
+    favicon = require('serve-favicon'),
+    logger = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    config = require('./config'), // executes all configuration files
+    passport = require('passport'),
+    mongoose = require('mongoose'),
+    db = mongoose.connection,
+    routes = require('./routes'),
+    app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
