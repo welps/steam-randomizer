@@ -79,3 +79,15 @@ p {
     user-select: none;  
 }
 
+#error-page {
+    #{headings(1,6)} {
+        font-family: Helvetica, sans-serif;
+    }
+    h1 {
+        font-size: 3rem;
+    }
+    h2 {
+        font-size: 2rem;
+        font-style: italic;
+    }
+}

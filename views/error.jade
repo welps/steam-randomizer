@@ -1,6 +1,9 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+    #main.row
+        #error-page.small-12.text-center
+            h1 THIS IS A ONE PAGE APP! #[br] HOW DID THIS HAPPEN? 
+            p Someone find the #[a(href="http://github.com/welps") developer] and tell him that the page you're on suffered from a :
+            h2 #{message} #{error.status}
+            pre #{error.stack}
