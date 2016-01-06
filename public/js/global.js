@@ -3,7 +3,8 @@
     $(document).ready(function(){
         getGames();
         $('#getGame').click(function(){
-            location.reload();
+            $('.options').hide();
+            getGames();
         });
     });
 
