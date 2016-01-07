@@ -20,8 +20,10 @@ p {
 	font-size: 1.1875rem;
 }
 
-#main {
-    padding-top: 6rem;
+@media screen and (min-width: 600px) { 
+    #main {
+        padding-top: 6rem;
+    }
 }
 
 #games {
@@ -34,10 +36,7 @@ p {
     padding-bottom: 2rem;
     position: absolute;
     width: 100%;
-
     .game__image {
-        height: 184px;
-        
         img {
             border-radius: 1rem;
             width: 75%;

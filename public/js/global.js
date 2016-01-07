@@ -61,6 +61,7 @@
         if (runThisManyTimes == 0){
             // show the game and user options to play after brief delay
             setTimeout(function(){$selector.fadeToggle(5000)}, 1000);
+            $('#games').height($('.game:visible').height());
             setTimeout(function(){$('.options').fadeToggle(2000)}, 4000);
             return;
         }
