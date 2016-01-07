@@ -156,7 +156,7 @@ describe('Steam Controller', function () {
             })(function(){
                 SteamController.getUsersGames(req, res, next);
 
-                expect(res.redirect.getCall(0).args[0]).to.equal('/');
+                expect(res.redirect.getCall(0).args[0]).to.equal('../../');
             });
         });
     });

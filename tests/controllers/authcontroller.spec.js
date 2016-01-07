@@ -39,7 +39,7 @@ describe('Auth Controller', function(){
                     authenticate: function(strategy, options){
                         expect(strategy).to.equal('steam');
                         expect(options).to.be.an('object');
-                        expect(options.failureRedirect).to.equal('/');
+                        expect(options.failureRedirect).to.equal('../');
 
                         return function(req, res, next){};
                     }
@@ -79,7 +79,7 @@ describe('Auth Controller', function(){
 
             AuthController.logoutUser(req, res, next);
             
-            expect(res.redirect.getCall(0).args[0]).to.equal('/');
+            expect(res.redirect.getCall(0).args[0]).to.equal('../');
         });
     });
 });
