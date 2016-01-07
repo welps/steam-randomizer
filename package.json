@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "pretest": "NODE_ENV=test API_KEY= DB_TEST_HOST=mongodb://localhost/steam-randomizer-test ./node_modules/mocha/bin/mocha tests/*",
     "test": "NODE_ENV=test YOURPACKAGE_COVERAGE=1 API_KEY= DB_TEST_HOST=mongodb://localhost/steam-randomizer-test ./node_modules/mocha/bin/mocha --require blanket --reporter mocha-lcov-reporter tests/* | ./node_modules/coveralls/bin/coveralls.js"
   },
   "config": {
