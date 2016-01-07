@@ -22,7 +22,7 @@ SteamController.getUsersGames = function (req, res, next){
             req.body.steamID = req.user.id;
             req.body.games = data.response.games;
             UsersController.addGames(req, res, next);
-            res.redirect('/');
+            res.redirect('../../');
         }
     });
 };

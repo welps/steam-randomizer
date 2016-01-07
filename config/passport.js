@@ -10,8 +10,8 @@ passport.deserializeUser(function(obj, done) {
 });
 
 passport.use(new SteamStrategy({
-        returnURL: process.env.RETURN_URL,
-        realm: process.env.BASE_URL,
+        returnURL: process.env.BASE_URL + (process.env.CUSTOM_PATH || '') + '/auth/steam/return',
+        realm: process.env.BASE_URL + (process.env.CUSTOM_PATH || ''), 
         apiKey: process.env.API_KEY
     },
     function(identifier, profile, done) {

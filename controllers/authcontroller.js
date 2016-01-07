@@ -7,7 +7,7 @@ AuthController.authenticateUser = function(req, res, next){
 
 AuthController.logoutUser = function(req, res, next){
     req.logout();
-    res.redirect('/');
+    res.redirect('../');
 };
 
 module.exports = AuthController;

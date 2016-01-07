@@ -7,6 +7,7 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     config = require('./config'), // executes all configuration files
+    customPath = process.env.CUSTOM_PATH || '',
     passport = require('passport'),
     mongoose = require('mongoose'),
     db = mongoose.connection,
@@ -24,7 +25,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(customPath, express.static(path.join(__dirname, 'public')));
 
 app.use(session({
         secret: process.env.SESSION_SECRET,
@@ -44,7 +45,7 @@ app.use(function(req, res, next){
 router.use('/', routes.Home);
 router.use('/user', routes.Users);
 router.use('/auth', routes.Auth);
-app.use('/', router);
+app.use(customPath + '/', router);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
