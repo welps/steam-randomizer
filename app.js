@@ -11,7 +11,8 @@ var express = require('express'),
     mongoose = require('mongoose'),
     db = mongoose.connection,
     routes = require('./routes'),
-    app = express();
+    app = express(),
+    router = express.Router();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -40,9 +41,10 @@ app.use(function(req, res, next){
         next();
 });
 
-app.use('/', routes.Home);
-app.use('/user', routes.Users);
-app.use('/auth', routes.Auth);
+router.use('/', routes.Home);
+router.use('/user', routes.Users);
+router.use('/auth', routes.Auth);
+app.use('/', router);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
