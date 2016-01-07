@@ -7,6 +7,7 @@ Demo: https://waynecheng.net/steam-randomizer/
 
 ## API:
 `/user/{steamid}` - returns user data in JSON
+
 `/user/{steamid}/randomgame/{numberofgamestoreturn}` - returns requested number of random games from user's collection in JSON
 
 ## Installation
