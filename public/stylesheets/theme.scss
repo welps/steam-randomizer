@@ -91,6 +91,10 @@ p {
     user-select: none;  
 }
 
+.show-after-animation {
+    opacity: 0;
+}
+
 #error-page {
     #{headings(1,6)} {
         font-family: Helvetica, sans-serif;

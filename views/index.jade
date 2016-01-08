@@ -15,7 +15,8 @@ block content
                     a(href='auth/steam')
                         img(src='images/steamlogin.png' alt='Sign in through Steam')
             else
-                p Hi <strong>#{user}</strong>. We think you should play:
+                p.greeting Hi <strong>#{user}</strong>. #[span.show-after-animation We think you should play:]
+                p #[a.getGame.button.green FIND A GAME ]
                 #games.double-margin.medium-push-2.medium-8.text-center
                 input#steam-id(value='#{steamID}', type='hidden')
-                p.options #[a.button.dark-red(href="auth/logout") LEAVE] or #[a#getGame.button.green TRY AGAIN]
+                p.options #[a.button.dark-red(href="auth/logout") LEAVE] or #[a.getGame.button.green TRY AGAIN]

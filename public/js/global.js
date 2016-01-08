@@ -1,9 +1,16 @@
 (function(){
+    var sayings = [
+        "We think you should play:",
+        "You should try playing:",
+        "How about this game?",
+        "We heard this game is good:"
+    ];
 
     $(document).ready(function(){
-        getGames();
-        $('#getGame').click(function(){
-            $('.options').hide();
+        console.log(sayings);
+        $('.getGame').click(function(){
+            $(this).parent().hide();
+            $('.show-after-animation').css('opacity', 0);
             getGames();
         });
     });
@@ -18,7 +25,7 @@
                 url: 'user/' + $steamID + '/randomgame/20',
                 success: function (data){
                     addGamesToPage(data);
-                    pickGame();
+                    startAnimation();
                 },
                 error: function (error){
                     $('#game__image').text('Please try again.');
@@ -50,30 +57,45 @@
             $('#games').html(gamesDiv);
     }
 
-    function pickGame(){
+    function startAnimation(){
         $('.game').hide();
-        var timesToRun = Math.floor(Math.random() * (50)) + 5;
+        var timesToRun = Math.floor(Math.random() * (45)) + 10;
 
-        showNextGame($('.game').first(), timesToRun);
+        animateNextGame($('.game').first(), timesToRun);
     }
 
-    function showNextGame($selector, runThisManyTimes){
+    function animateNextGame($selector, runThisManyTimes){
         if (runThisManyTimes == 0){
-            // show the game and user options to play after brief delay
-            setTimeout(function(){$selector.fadeToggle(5000)}, 1000);
-            $('#games').height($('.game:visible').height());
-            setTimeout(function(){$('.options').fadeToggle(2000)}, 4000);
-            return;
+            return unveilGame($selector);
         }
 
         $selector.fadeToggle(100, function(){
             $(this).fadeToggle(100);
             if ($(this).next().length > 0){
-                showNextGame($(this).next(), runThisManyTimes - 1);
+                animateNextGame($(this).next(), runThisManyTimes - 1);
             }
             else {
-                showNextGame($('.game').first(), runThisManyTimes - 1);
+                animateNextGame($('.game').first(), runThisManyTimes - 1);
             }
         });
     }
+
+    function unveilGame($selector){
+        // show the game and user options to play after brief delay
+        setTimeout(function(){
+            displayText();
+            $selector.fadeToggle(5000)
+        }, 1000);
+
+        // Keep options close to game container
+        $('#games').height($('.game:visible').height());
+        setTimeout(function(){$('.options').fadeToggle(2000)}, 4000);
+    }
+
+    function displayText(){
+        var randomNumber = Math.floor(Math.random() * sayings.length);
+        $('.show-after-animation').text(sayings[randomNumber]);
+        $('.show-after-animation').fadeTo(2500, 1);
+    };
+
 })();
