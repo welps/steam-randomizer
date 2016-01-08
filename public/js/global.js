@@ -43,12 +43,14 @@
                     gameName = gamesJson.games[i].name;
                     gameImageUrl = gamesJson.games[i].img_logo_url;
 
-                    gameNameHtml = '<p class="game__name">' + gameName + '</p>';
+                    gameLinkHtml = function(content){
+                        return '<a title="Click to run or install game" href="steam://run/' + gameId + '">' + content + '</a>';
+                    }
+                    gameNameHtml = '<p class="game__name">' + gameLinkHtml(gameName) + '</p>';
                     gameImage = 'http://media.steampowered.com/steamcommunity/public/images/apps/' + gameId + '/' + gameImageUrl + '.jpg';
-                    gameImageHtml = '<p class="game__image"><img src="' + gameImage + '" alt="' + gameName + '"/></p>';
-                    gameLinkHtml = '<a title="Click to run or install game" href="steam://run/' + gameId + '">' + gameNameHtml + '</a>';
-                
-                    gameDiv = '<div class="game">' + gameImageHtml + gameLinkHtml + '</div>';
+                    gameImageHtml = '<p class="game__image">' + gameLinkHtml('<img src="' + gameImage + '" alt="' + gameName + '"/>') + '</p>';
+                    
+                    gameDiv = '<div class="game">' + gameImageHtml + gameNameHtml + '</div>';
                     gamesDiv += gameDiv;
                 }
             }
