@@ -9,8 +9,13 @@
   },
   "config": {
     "blanket": {
-        "pattern": [""],
-        "data-cover-never": [ "node_modules", "tests"]
+      "pattern": [
+        ""
+      ],
+      "data-cover-never": [
+        "node_modules",
+        "tests"
+      ]
     }
   },
   "dependencies": {
@@ -44,6 +49,7 @@
     "gulp-minify-css": "^1.2.3",
     "gulp-rename": "^1.2.2",
     "mocha-lcov-reporter": "^1.0.0",
-    "blanket": "^1.2.1"
+    "blanket": "^1.2.1",
+    "gulp-minify": "0.0.5"
   }
 }

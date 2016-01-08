@@ -1,23 +1,35 @@
 var gulp = require('gulp'),
 sass = require('gulp-sass'),
 watch = require('gulp-watch'),
-minify = require('gulp-minify-css'),
+minifyCSS = require('gulp-minify-css'),
+minifyJS = require('gulp-minify'),
 rename = require('gulp-rename');
 
 var foundationDir = 'public/foundation/',
 stylesheetDir = 'public/stylesheets/',
-sassDirs = [foundationDir + '*.scss', stylesheetDir + '*.scss'];
+sassFiles = [foundationDir + '*.scss', stylesheetDir + '*.scss'],
+scriptsDir = 'public/js/';
+scriptFiles = scriptsDir + 'global.js';
 
 gulp.task('sassify', function(){
-    gulp.src(sassDirs)
+    gulp.src(sassFiles)
 	    .pipe(sass())
 		.pipe(rename({suffix: '.min'}))
-		.pipe(minify())
+		.pipe(minifyCSS())
 		.pipe(gulp.dest(stylesheetDir));
 });
 
-gulp.task('watch', function(){
-	gulp.watch(sassDirs, ['sassify']);
+gulp.task('scriptify', function(){
+    gulp.src(scriptFiles)
+        .pipe(minifyJS({
+            ignoreFiles: ['-min.js']
+        }))
+        .pipe(gulp.dest(scriptsDir));
 });
 
-gulp.task('default', ['sassify', 'watch']);
+gulp.task('watch', function(){
+	gulp.watch(sassFiles, ['sassify']);
+    gulp.watch(scriptFiles, ['scriptify']);
+});
+
+gulp.task('default', ['sassify', 'scriptify', 'watch']);
