@@ -31,7 +31,7 @@ p {
 
 #main {
     @include tabletUp {
-        padding-top: 6rem;
+        padding-top: 4rem;
     }
 }
 
@@ -45,14 +45,14 @@ p {
     padding-bottom: 2rem;
     position: absolute;
     width: 100%;
-    .game__image {
+    &__image {
         img {
             border-radius: 1rem;
             width: 75%;
         }
     }
 
-    .game__name {
+    &__name {
         font-size: 1rem;
         font-weight: bold;
         @include tabletUp {
@@ -62,7 +62,9 @@ p {
 }
 
 .double-margin {
-    margin-top: 2rem;
+    &--top {
+        margin-top: 2rem;
+    }
 }
  
 .button {
@@ -80,6 +82,13 @@ p {
         &:focus, &:hover {
             background: #0DAD02;
         }
+    }
+}
+
+#start {
+    a {
+        font-size: 2rem;
+        line-height:2.5rem;
     }
 }
 

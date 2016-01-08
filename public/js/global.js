@@ -7,7 +7,6 @@
     ];
 
     $(document).ready(function(){
-        console.log(sayings);
         $('.getGame').click(function(){
             $(this).parent().hide();
             $('.show-after-animation').css('opacity', 0);
@@ -88,7 +87,7 @@
         }, 1000);
 
         // Keep options close to game container
-        $('#games').height($('.game:visible').height());
+        $('#games').height($('.game:visible').height() + 5);
         setTimeout(function(){$('.options').fadeToggle(2000)}, 4000);
     }
 
