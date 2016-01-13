@@ -52,6 +52,6 @@
     "blanket": "^1.2.1",
     "gulp-minify": "0.0.5",
     "supertest": "^1.1.0",
-    "mockgoose": "^5.2"
+    "mockgoose": "5.0.10"
   }
 }
