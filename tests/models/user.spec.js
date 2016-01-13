@@ -46,7 +46,7 @@ var testGames = [
 
 describe('Users model', function(){
     beforeEach(function(done){
-        if (mongoose.connection.readyState === 0) { 
+        if (mongoose.connection.readyState === 0) {
             mongoose.connect(process.env.DB_TEST_HOST, function (err) {
                 if (err) throw err;
                 for (var i in mongoose.connection.collections){

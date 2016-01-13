@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
 
 if (process.env.NODE_ENV == 'test'){
+    var mockgoose = require('mockgoose');
+    mockgoose(mongoose);
+
     mongoose.connect(process.env.DB_TEST_HOST);
 }
 else {
