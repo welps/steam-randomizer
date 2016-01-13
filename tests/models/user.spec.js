@@ -5,6 +5,8 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 var mongoose = require('mongoose');
+var mockgoose = require('mockgoose');
+mockgoose(mongoose);
 var chai = require('chai');
 var async = require('async');
 var expect = chai.expect;
