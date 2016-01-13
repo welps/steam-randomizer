@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
 sass = require('gulp-sass'),
 watch = require('gulp-watch'),
-minifyCSS = require('gulp-minify-css'),
+cssnano = require('gulp-cssnano'),
 minifyJS = require('gulp-minify'),
 rename = require('gulp-rename');
 
@@ -15,7 +15,7 @@ gulp.task('sassify', function(){
     gulp.src(sassFiles)
 	    .pipe(sass())
 		.pipe(rename({suffix: '.min'}))
-		.pipe(minifyCSS())
+		.pipe(cssnano())
 		.pipe(gulp.dest(stylesheetDir));
 });
 
